@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glowell — Lighting that understands you</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+.coming-soon {
+  width: 100%;
+  text-align: center;
+  padding: 10px 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: #111;
+  background: linear-gradient(135deg, #5eead4, #a78bfa, #fbbf24);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #c1d9ff, #ffd1d1, #fff5d1);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      color: #222;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #3e3e3e;
+      gap: 12px;
+    }
+    .logo-g {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5eead4, #a78bfa, #fbbf24);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: white;
+      user-select: none;
+      box-shadow: 0 0 15px rgba(255 255 255 / 0.6);
+    }
+    button.btn {
+      background: linear-gradient(135deg, #5eead4, #a78bfa, #fbbf24);
+      border: none;
+      border-radius: 28px;
+      padding: 14px 32px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #111;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(123, 108, 255, 0.35);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    button.btn:hover {
+      box-shadow: 0 8px 25px rgba(123, 108, 255, 0.55);
+      transform: translateY(-2px);
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 60px;
+      padding-bottom: 80px;
+      flex-wrap: wrap;
+    }
+    .hero-left {
+      flex: 1 1 500px;
+      min-width: 320px;
+    }
+    .hero-left h1 {
+      font-size: 3.25rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 16px 0;
+      color: #222;
+    }
+    .hero-left p.subtitle {
+      font-weight: 400;
+      font-size: 1.125rem;
+      margin-bottom: 36px;
+      color: #555;
+      max-width: 520px;
+    }
+    .hero-left button {
+      margin-bottom: 48px;
+    }
+    .demo {
+      background: rgba(255 255 255 / 0.85);
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+      padding: 24px 32px;
+      max-width: 500px;
+      user-select: none;
+    }
+    .demo strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #333;
+    }
+    input[type="range"] {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 12px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #5eead4 0%, #a78bfa 50%, #fbbf24 100%);
+      outline: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.15);
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #a78bfa;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #fbbf24;
+      border-color: #5eead4;
+    }
+    .light-room {
+      width: 100%;
+      height: 120px;
+      border-radius: 20px;
+      background: hsl(180, 70%, 70%);
+      transition: background 0.6s ease;
+      box-shadow: 0 0 45px 10px hsl(180, 70%, 70%);
+    }
+    .hero-right {
+      background: rgba(255 255 255 / 0.85);
+      border-radius: 28px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      flex: 0 0 280px;
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .hero-right h3 {
+      margin: 0 0 16px 0;
+      font-weight: 700;
+      color: #333;
+      font-size: 1.4rem;
+    }
+    .hero-right p {
+      font-weight: 500;
+      color: #555;
+      font-size: 1rem;
+      margin: 0;
+    }
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: #222;
+    }
+    p.subtitle {
+      max-width: 640px;
+      margin: 0 auto 48px auto;
+      text-align: center;
+      color: #555;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+    .cards {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      padding: 0 12px;
+    }
+    .card {
+      background: rgba(255 255 255 / 0.85);
+      border-radius: 28px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+      padding: 24px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+    .card p {
+      color: #444;
+      font-weight: 500;
+      font-size: 1rem;
+      margin: 0 0 16px 0;
+      flex-grow: 1;
+    }
+    .card h3 {
+      margin: 16px 0 12px 0;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #222;
+    }
+    .product-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      object-fit: contain;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+      background: white;
+      padding: 12px;
+      user-select: none;
+    }
+    .badge {
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      padding: 6px 14px;
+      color: white;
+      margin-bottom: 12px;
+      display: inline-block;
+      user-select: none;
+      letter-spacing: 0.03em;
+    }
+    .badge.green { background: #22c55e; }
+    .badge.orange { background: #f97316; }
+    .badge.red { background: #dc2626; }
+    .price {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #222;
+    }
+    .price s {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #888;
+      margin-left: 12px;
+    }
+    .card button {
+      padding: 12px 24px;
+      border-radius: 28px;
+      border: none;
+      background: linear-gradient(135deg, #5eead4, #a78bfa, #fbbf24);
+      color: #111;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(123, 108, 255, 0.3);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    .card button:hover {
+      box-shadow: 0 10px 30px rgba(123, 108, 255, 0.5);
+      transform: translateY(-2px);
+    }
+    .phone {
+      width: 280px;
+      height: 540px;
+      border-radius: 36px;
+      background: #111;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+      margin: 0 auto 48px auto;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-screen {
+      width: 90%;
+      height: 90%;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #5eead4, #a78bfa);
+      box-shadow: inset 0 0 24px rgba(0,0,0,0.3);
+    }
+    .testimonial {
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+      padding: 20px 24px;
+      background: rgba(255 255 255 / 0.85);
+      border-radius: 28px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      user-select: none;
+      transition: box-shadow 0.3s ease;
+    }
+    .testimonial:hover {
+      box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+    }
+    form {
+      max-width: 520px;
+      margin: 0 auto 80px auto;
+      display: flex;
+      gap: 12px;
+      user-select: none;
+    }
+    form input[type="email"] {
+      flex-grow: 1;
+      padding: 16px 20px;
+      border-radius: 28px;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      outline-offset: 2px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    form input[type="email"]:focus {
+      box-shadow: 0 0 18px #a78bfa;
+    }
+    form button {
+      padding: 16px 36px;
+      border-radius: 28px;
+      border: none;
+      font-weight: 700;
+      font-size: 1.125rem;
+      background: linear-gradient(135deg, #5eead4, #a78bfa, #fbbf24);
+      color: #111;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(123,108,255,0.4);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    form button:hover {
+      box-shadow: 0 10px 30px rgba(123,108,255,0.6);
+      transform: translateY(-2px);
+    }
+    footer {
+      text-align: center;
+      padding: 36px 24px;
+      font-weight: 500;
+      color: #555;
+      user-select: none;
+      border-top: 1px solid #ddd;
+      background: rgba(255 255 255 / 0.7);
+    }
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        padding-bottom: 48px;
+      }
+      .hero-left, .hero-right {
+        flex: none;
+        width: 100%;
+      }
+      form {
+        flex-direction: column;
+      }
+      form button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="coming-soon">
+  🚀 Coming Soon
+</div>
+  <header class="container">
+    <div class="logo">
+      <div class="logo-g" aria-label="Glowell logo">G</div>
+      Glowell
+    </div>
+    <button class="btn" aria-label="Join the waitlist">Join the Waitlist</button>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-label="Introduction to Glowell">
+      <div class="hero-left">
+        <h1>Lighting that understands you.</h1>
+        <p class="subtitle">Glowell adapts your lighting in real time using biometric signals to help lift your mood.</p>
+        <button class="btn" aria-label="Experience Glowell">Experience Glowell</button>
+
+        <div class="demo" aria-label="Mood demo">
+          <strong>Try the mood demo</strong>
+          <input type="range" min="0" max="100" value="50" id="mood" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Adjust mood slider" />
+          <div class="light-room" id="room" aria-live="polite" aria-label="Room lighting color preview"></div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <h3>Adaptive Ambient Lighting</h3>
+        <p>Your space responds instantly to how you feel.</p>
+      </div>
+    </section>
+
+    <section aria-label="How Glowell works">
+      <h2>How it works</h2>
+      <div class="cards" role="list">
+        <div class="card" tabindex="0" role="listitem" aria-label="Step 1: Wear the Glowell wristband">Wear the Glowell wristband</div>
+        <div class="card" tabindex="0" role="listitem" aria-label="Step 2: AI detects emotional signals">AI detects emotional signals</div>
+        <div class="card" tabindex="0" role="listitem" aria-label="Step 3: Lights adapt instantly">Lights adapt instantly</div>
+      </div>
+    </section>
+
+    <section aria-label="Shop Glowell products">
+      <h2>Shop Glowell</h2>
+      <p class="subtitle">Limited-time offers on emotion-aware lighting.</p>
+      <div class="cards">
+       <article class="card" tabindex="0" aria-label="Glowell Wristband with 30% off">
+          <span class="badge green">30% OFF</span>
+          <img
+            class="product-img"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAADYp74kAAAAMFBMVEVHcEy/vT+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj5N2XoQAAAADHRSTlMABCAkJSUrNDo9PkxmZzbb1WyAAACnUlEQVR4Ae2a2XKDIAxFhRaUrfX9nqT3tjC+3v3rEIKCx7uWZwQzMY06XRKIVj0NXckPrCAWUkFQ6OYSkB/jgVDBBFzvJQXYLaAIQilLR3F0QsmkTI4SIQA6SFrbgOQjQiJDhMeAEkoZygkxkPAM9B1PcFGIaqLAloKxiLRhrLnCyRTZOmzORLUY2XIaNu2gllVYszkuISmRWKhWZjFmVz0z20HoTzZkOqSBP8sm+Fs+u8xszgB5hBgQsyCxeJFP/YVJkkYIP8zFqKGGqCpz2bpOB64xohrRWL3pTQ2qo4am4A1Tg2UO6goK9HZqI7ar1knFJTxIZeK89YRU0dcQgL1BxuE2S6CsgkgZgmCbJC+xgY9GGLcY9PckAMF1nqJAvb9n4L5QazquONvIMHGo48iGKLzmHMp1QjFROH4ZQI7hDzS6BZDP2GCzjFjSi1MlGp5p6DqP6SptdrPS5Sk11KsqLXe5Evo0bOw9yGcYdBYPmP1FvA93rXkOf3Yv0/NrcAyfP7Hjq4fzOH2pMs/SdVuG6DuDbf2VvLe6WvyxDAxBCKExhCTkAAAAASUVORK5CYII="
+            alt="Glowell wristband"
+          />
+          <h3>Glowell Wristband</h3>
+          <p>Scan your mood with the sleek wristband, syncing heart rate and facial cues.</p>
+          <div class="price">
+            $69.99 <s>$99.99</s>
+          </div>
+          <button>Add to Cart</button>
+        </article>
+
+        <article class="card" tabindex="0" aria-label="Glowell Mood Light Bulb with Buy One Get One offer">
+          <span class="badge orange">BOGO OFFER</span>
+          <img
+            class="product-img"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAADYp74kAAAAV1BMVEVHcEy/vT+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj5N2XoQAAAADHRSTlMABCAkJSUrNDo9PkxmZzbb1WyAAAFl0lEQVR4Ae2a2W7CMBBFJdwYoz//1E6IxcoMRJFt4d4f1FZYLh+r0ZqGq4Ld8n6RRxsiG3UpZPYpmHZr+LGqcpZW+kEqzFIQOQx1ASjiHiqDMVwF0kOZj9pwDID0BqKDR6rA5IC5ErgxEyBhQKOhQQL5ERJCh2MW1A/jyyMSEIXyqWJGqRBQeDmj5v7gDm4q4HVVZq7ZKnDx0tYSJxEFKo4u1fkuRkEdGJxIHG7QcyOxTpnM0MF6nGfczXm7JmQxRZPQ6MvplEpjUxq8mZkwQa6kz49IhZ0UPNiFRNGzpmQFcvURWNNl0wNNpMIFP1QE9O4GfW9NMZ8kzv+n9jDBh5W6zD6G32wG4W+/cL6rTcKn2hjb8cb7K0dkL54pyM0f1thSPXzO4H9YVOVj3NcLwTTZg+y71p05BTG5C8N6kPe6ucM0P3EeIltth0iA7sJ0nyB9O8xH+kzLEKdNwTrrTbV3EZpNluD6XTdhKwYx7y9cIlPhQ55TdfEVYbJP5glZ2PiXtxCN4m1sq6jMp3L4XDp8HVa97HiBz2QDYu1VJINZLY9CVnnmquMMP1NILbQZY6iUR4ac+4G05yOEQpq9EvO5Lv5Ht46ji6B0thZXFVoAjJx+UOmXexLbi6tthXbX+dXqWNH5QztMuzy2p+WdZfmK5w7wbi1Hf4m4LVf0x2Gmw+7acLN8W1q3zm3jlG0kqbXo9OenD68/0W+H+r4D9fujGx+fN3gAAAABJRU5ErkJggg=="
+            alt="Glowell Mood Light Bulb"
+          />
+          <h3>Glowell Mood Light Bulb</h3>
+          <p>Smart light bulbs that shift colors according to your mood and heart rate.</p>
+          <div class="price">
+            $29.99 <s>$59.99</s>
+          </div>
+          <button>Add to Cart</button>
+        </article>
+
+        <article class="card" tabindex="0" aria-label="Glowell Smart Desk Lamp with 15% off">
+          <span class="badge green">15% OFF</span>
+          <img
+            class="product-img"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAADYp74kAAAANlBMVEVHcEy/vT+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj5N2XoQAAAADHRSTlMABCAkJSUrNDo9PkxmZzbb1WyAAABFklEQVR4Ae2a2W6CQBBEJYXDv3/6bSjcaIvMi7DoKiuwT+f9YfTguCZPce91slFq+rMopRWbqa4DWKCqzYlSmAwiT0yXDwHUQS6Tx4I3WmTTIwAA3EDnJcjzo+QoxvTkRCwDxNJEeoyQ7D5NsS6iq6CqSRXnWSWwgn5RhE0Dc9y92qibJoFDkTsw3RfLzF0xlD0Qt3gWVTqke0IZo2VBRUKbpG0W01kK1IkQZtJ6hxU4p80F/0q06BoJSfqQhQLmuC7IgFIxVQdoGlVe2Atp2eCxmsZK8ClM2DEpsRg4SpqI6xK24T81D5N7R9LXv1uokZbXkWxxqxHoYq4iUs5NPrH8pXzvU0eY3sk8kAv51AHzR6cLj3kUlDj1GqAAAAAElFTkSuQmCC"
+            alt="Glowell Smart Desk Lamp"
+          />
+          <h3>Glowell Smart Desk Lamp</h3>
+          <p>Adjustable desk lamp with emotion-adaptive color shifts to boost your focus.</p>
+          <div class="price">
+            $84.99 <s>$99.99</s>
+          </div>
+          <button>Add to Cart</button>
+        </article>
+
+        <article class="card" tabindex="0" aria-label="Glowell Ambient Floor Light">
+          <img
+            class="product-img"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAADYp74kAAAANlBMVEVHcEy/vT+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj5N2XoQAAAADHRSTlMABCAkJSUrNDo9PkxmZzbb1WyAAABFklEQVR4Ae2a2W6CQBBEJYXDv3/6bSjcaIvMi7DoKiuwT+f9YfTguCZPce91slFq+rMopRWbqa4DWKCqzYlSmAwiT0yXDwHUQS6Tx4I3WmTTIwAA3EDnJcjzo+QoxvTkRCwDxNJEeoyQ7D5NsS6iq6CqSRXnWSWwgn5RhE0Dc9y92qibJoFDkTsw3RfLzF0xlD0Qt3gWVTqke0IZo2VBRUKbpG0W01kK1IkQZtJ6hxU4p80F/0q06BoJSfqQhQLmuC7IgFIxVQdoGlVe2Atp2eCxmsZK8ClM2DEpsRg4SpqI6xK24T81D5N7R9LXv1uokZbXkWxxqxHoYq4iUs5NPrH8pXzvU0eY3sk8kAv51AHzR6cLj3kUlDj1GqAAAAAElFTkSuQmCC"
+            alt="Glowell Ambient Floor Light"
+          />
+          <h3>Glowell Ambient Floor Light</h3>
+          <p>Set the perfect mood with this floor light that gently changes color with your feelings.</p>
+          <div class="price">
+            $149.99
+          </div>
+          <button>Add to Cart</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-label="Customer testimonials">
+      <h2>What people say about Glowell</h2>
+      <div class="cards" role="list">
+        <blockquote class="testimonial" tabindex="0" role="listitem" aria-label="Testimonial from user Jane Doe">
+          "Glowell changed how I experience my room. The lighting truly responds to my mood and it helps me stay positive throughout the day."
+          <br><br>– Jane Doe
+        </blockquote>
+        <blockquote class="testimonial" tabindex="0" role="listitem" aria-label="Testimonial from user Mark T.">
+          "The wristband is comfortable and the light colors are soothing. It's like having a personal mood coach at home."
+          <br><br>– Mark T.
+        </blockquote>
+        <blockquote class="testimonial" tabindex="0" role="listitem" aria-label="Testimonial from user Priya K.">
+          "Perfect for anyone dealing with stress or just wanting a happier space. Highly recommend Glowell!"
+          <br><br>– Priya K.
+        </blockquote>
+      </div>
+    </section>
+
+    <section aria-label="Join Glowell waitlist">
+      <h2>Join the Glowell waitlist</h2>
+      <p class="subtitle">Be the first to get updates and special launch offers.</p>
+      <form id="waitlist-form" aria-label="Join waitlist form">
+        <input type="email" id="email" name="email" placeholder="Your email address" required aria-required="true" aria-describedby="emailHelp" />
+        <button type="submit" aria-label="Join waitlist">Join</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Glowell Inc. All rights reserved.
+  </footer>
+
+  <script>
+    // Mood slider changes light color dynamically
+    const moodSlider = document.getElementById('mood');
+    const roomLight = document.getElementById('room');
+
+    function updateLightColor(value) {
+      // Map 0-100 to hue 240 (blue) to 60 (yellow) to 0 (red)
+      let hue;
+      if(value < 50){
+        hue = 240 - (value * 3.6 * 2); // blue to yellow range
+      } else {
+        hue = 60 - ((value-50) * 1.2); // yellow to red range
+      }
+      const saturation = 75;
+      const lightness = 65;
+      roomLight.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      roomLight.style.boxShadow = `0 0 40px 12px hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    }
+
+    moodSlider.addEventListener('input', (e) => {
+      updateLightColor(e.target.value);
+      e.target.setAttribute('aria-valuenow', e.target.value);
+    });
+
+    // Initialize on page load
+    updateLightColor(moodSlider.value);
+
+    // Waitlist form submission (dummy)
+    const form = document.getElementById('waitlist-form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = form.email.value.trim();
+      if(email) {
+        alert(`Thanks for joining the waitlist, ${email}!`);
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
+
+
